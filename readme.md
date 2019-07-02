@@ -97,6 +97,7 @@ Definition of the different states and their transition (transition functions)
 - create Player.js
 - create a player in Game.js
 - create move()function for player
+- check collisions between player and de limit of Canvas
 - create Obstacle.js
 - create random obstacles in Game.js (flags)
 - check collisions between player and obstacles
