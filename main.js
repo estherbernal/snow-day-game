@@ -5,7 +5,6 @@ function main(){
   var mainSection = document.querySelector('#main-section');
 
   function buildDom(html){
-    //mostrar en index.html lo que recibamos como html
     mainSection.innerHTML = html;
     return mainSection;
   }
@@ -40,12 +39,8 @@ function main(){
 
     document.addEventListener('keydown',function(event){
       if(event.key === 'ArrowLeft'){
-        console.log('izquierda')
-        //game.player.direction = -1;
         game.player.setDirection(-1);
       }else if(event.key === 'ArrowRight'){
-        console.log('derecha')
-        //game.player.direction = 1;
         game.player.setDirection(1);
       };
     }); 

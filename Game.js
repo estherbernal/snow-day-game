@@ -12,12 +12,22 @@ function Game(canvas){
 Game.prototype.startGame = function(){
   //inicializa player
   this.player = new Player(this.canvas);
-  //crea flags random
+
   //crea la meta después de x segundos
 
   //hace el loop
   var loop = () =>{
-    console.log('heyyy')
+    //crea flags random
+    if(Math.random()>0.98){
+      var randomX = Math.random()*this.canvas.width;
+      var newFlag = new Obstacle(this.canvas, randomX);
+      this.flags.push(newFlag);
+
+    }
+    this.flags
+
+
+
     this.clear();
     this.update();
     this.draw();
@@ -28,22 +38,22 @@ Game.prototype.startGame = function(){
 };
 
 Game.prototype.clear = function(){
-  //limpia el canvas
   this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
 }
 
 Game.prototype.update = function(){
-  //actualiza la posición de player
   this.player.move();
-  
-  //actualiza la posición de las flags
+  this.flags.forEach(function(flag){
+    flag.move();
+  });
   //actualiza la posición de la meta
 }
 
 Game.prototype.draw = function(){
-  //redibuja el player
   this.player.draw(); 
-  //redibuja las banderas
+  this.flags.forEach(function(flag){
+    flag.draw();
+  });
   //redibuja la meta
 }
 

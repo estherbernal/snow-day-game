@@ -3,11 +3,11 @@
 function Player(canvas){
   this.canvas = canvas;
   this.ctx = this.canvas.getContext('2d');
-  this.width = 20;
-  this.height = 20;
+  this.width = 50;
+  this.height = 50;
   this.x = this.canvas.width/2;
   this.y = this.height/2 + 20;
-  this.velocity = 3;
+  this.velocity = 4;
   this.direction = 0;
   this.color = 'red';
 };
