@@ -35,6 +35,7 @@ Game.prototype.clear = function(){
 Game.prototype.update = function(){
   //actualiza la posición de player
   this.player.move();
+  
   //actualiza la posición de las flags
   //actualiza la posición de la meta
 }

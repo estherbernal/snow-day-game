@@ -13,7 +13,7 @@ function Player(canvas){
 };
 
 Player.prototype.draw = function(){
-  this.ctx.fillRect((this.x+this.width/2), (this.y+this.height/2), this.width, this.height)
+  this.ctx.fillRect((this.x-this.width/2), (this.y-this.height/2), this.width, this.height)
 };
 
 Player.prototype.setDirection = function(newDirection){

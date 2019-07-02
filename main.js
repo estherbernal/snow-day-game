@@ -49,6 +49,11 @@ function main(){
         game.player.setDirection(1);
       };
     }); 
+
+    document.addEventListener('keyup',function(event){
+        game.player.setDirection(0);
+    });
+    
   };
 
 
