@@ -7,7 +7,7 @@ function Player(canvas){
   this.height = 50;
   this.x = this.canvas.width/2;
   this.y = this.height/2 + 20;
-  this.velocity = 4;
+  this.velocity = 5;
   this.direction = 0;
   this.color = 'red';
 };
@@ -21,7 +21,14 @@ Player.prototype.setDirection = function(newDirection){
 };
 
 Player.prototype.move = function(){
-  this.x = this.x + this.direction*this.velocity;
+  this.checkCanvas();
+  this.x = this.x + this.direction*this.velocity;  
 };
 
-
+Player.prototype.checkCanvas = function(){
+  if(this.x < this.width/2){
+    this.x = this.width/2;
+  }else if(this.x > (this.canvas.width - this.width/2)){
+    this.x = this.canvas.width - this.width/2;
+  };
+};

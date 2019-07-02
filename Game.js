@@ -31,6 +31,7 @@ Game.prototype.startGame = function(){
     this.clear();
     this.update();
     this.draw();
+    this.checkCollision();
 
     requestAnimationFrame(loop);
   };
@@ -59,5 +60,20 @@ Game.prototype.draw = function(){
 
 Game.prototype.checkCollision = function(){
   // comprueba colisión entre player y bandera
+  this.flags.forEach((flag,index) => {
+    var rightLeft = this.player.x + this.player.width/2 >= flag.x - flag.width/2;
+    var leftRight = this.player.x <= flag.x + flag.width/2;
+    var topBottom = this.player.y + this.player.height/2 >= flag.y - flag.height/2;
+    var bottomTop = this.player.y <= flag.y + flag.height/2;   
+
+  
+    if(rightLeft && leftRight && topBottom && bottomTop){
+      this.score += 100;
+      this.flags.splice(index,1);
+
+      console.log(this.score);
+    }
+  })
+
   //comprueba colisión entre player y meta
 }
