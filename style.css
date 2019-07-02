@@ -80,3 +80,17 @@ p {
   color: blue;
   background-color: #fff;
 }
+
+
+
+
+
+#main-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#canvas{
+  border: 1px solid black;
+}

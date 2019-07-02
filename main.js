@@ -12,8 +12,10 @@ function main(){
 
   function createSplashScreen(){
     var splashContent = `
-    <h1>Snow Day</h1>
-    <button id="start-button">Start</button>
+    <article>
+      <h1>Snow Day</h1>
+      <button id="start-button">Start</button>
+    </article>
     `;
 
     buildDom(splashContent);
@@ -22,18 +24,42 @@ function main(){
     startButton.addEventListener('click', createGameScreen);
   }
 
+
+
   function createGameScreen(){
     var gameContent = `
-    <canvas width="500" height="500"></canvas>
+    <canvas id="canvas"></canvas>
     `;
     buildDom(gameContent);
-    setTimeout(createRestartScreen,3000);
-  }
+
+    var canvas =  document.querySelector('#canvas');
+    canvas.width = '500';
+    canvas.height = '800';
+    var game = new Game(canvas);
+    game.startGame();
+
+    document.addEventListener('keydown',function(event){
+      if(event.key === 'ArrowLeft'){
+        console.log('izquierda')
+        //game.player.direction = -1;
+        game.player.setDirection(-1);
+      }else if(event.key === 'ArrowRight'){
+        console.log('derecha')
+        //game.player.direction = 1;
+        game.player.setDirection(1);
+      };
+    }); 
+  };
+
+
+
 
   function createRestartScreen(){
     var restartContent = `
-    <h1>Snow Day</h1>
-    <button id="restart-button">Restart</button>
+    <article>
+      <h1>Snow Day</h1>
+      <button id="restart-button">Restart</button>
+    </article>
     `;
     buildDom(restartContent);
 
