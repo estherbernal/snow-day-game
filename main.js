@@ -35,8 +35,9 @@ function main(){
     canvas.width = '500';
     canvas.height = '800';
     var game = new Game(canvas);
+    game.gameEndCallback(createRestartScreen);
     game.startGame();
-
+    
     document.addEventListener('keydown',function(event){
       if(event.key === 'ArrowLeft'){
         game.player.setDirection(-1);
@@ -49,6 +50,42 @@ function main(){
         game.player.setDirection(0);
     });
     
+    /* Desaceleración cambiar velocidad a 0*/
+    /*
+    var deceleration = null;
+    document.addEventListener('keydown',function(event){
+      if(deceleration){
+        clearInterval(deceleration);
+      }
+      if(event.key === 'ArrowLeft'){
+        game.player.velocity = 0;
+        game.player.direction = 0;
+        game.player.setDirection(-1);
+        for(var i= game.player.velocity; i<5; i++){
+          game.player.velocity = game.player.velocity + 1;
+        }
+      }else if(event.key === 'ArrowRight'){
+        game.player.velocity = 0;
+        game.player.direction = 0;
+        game.player.setDirection(1);
+        for(var i= game.player.velocity; i<5; i++){
+          game.player.velocity = game.player.velocity + 1;
+        }
+      };
+    }); 
+    
+
+    document.addEventListener('keyup',function(){
+      deceleration = setInterval(function(){
+        game.player.velocity = game.player.velocity - 2;
+        if(game.player.velocity<=0){
+          game.player.direction = 0;
+          clearInterval(deceleration);
+          game.player.setDirection(0);
+        }
+      },200);
+    });
+    */
   };
 
 
