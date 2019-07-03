@@ -14,36 +14,36 @@ function Game(canvas){
 
 Game.prototype.startGame = function(){
   //inicializa player
-  this.player = new Player(this.canvas, 'red');
+  this.player = new Player(this.canvas);
   
   //crea la meta después de x segundos
   setTimeout(() => {
-    this.goal = new GoalLine(this.canvas, 'yellow');
+    this.goal = new GoalLine(this.canvas);
   },30000);
 
-   //flags cada segundo
+   //flags cada medio segundo
   setInterval(() => {
-    var randomNum = Math.floor(Math.random() * (this.canvas.width/1.25 - 125)) + 125;
-    var randomX = randomNum;
-    var newFlag = new Obstacle(this.canvas, randomX, 20, 20, 'blue');
+    var srcFlags = ['images/bandera1.png','images/bandera2.png','images/bandera3.png','images/bandera4.png'];
+    var randomNum = Math.floor(Math.random() * srcFlags.length);
+    var randomX =  Math.floor(Math.random() * (this.canvas.width/1.25 - this.canvas.width*0.25)) + this.canvas.width*0.25;
+    var newFlag = new Obstacle(this.canvas, randomX, 20, 20,srcFlags[randomNum]);
     this.flags.push(newFlag);
-  },1000);
+  },500);
   
   //hace el loop
   var loop = () =>{
     //crear árboles random
-    if(Math.random()>0.95){
+    if(Math.random()>0.85){
+      var srcObstacles = ['images/arbol1.png','images/arbol2.png'];
+      var randomNum = Math.floor(Math.random() * srcObstacles.length);
       var randomX = Math.random()*this.canvas.width;
-      var newObstacle = new Obstacle(this.canvas, randomX, 30, 40, 'black');
+      var newObstacle = new Obstacle(this.canvas, randomX, 60, 80, srcObstacles[randomNum]);
       this.obstacles.push(newObstacle);
     }
-
-
     this.clear();
     this.update();
     this.draw();
     this.checkCollision();
-
 
     if (!this.gameEnd){
       requestAnimationFrame(loop);
@@ -96,7 +96,7 @@ Game.prototype.checkCollision = function(){
 
   
     if(rightLeft && leftRight && topBottom && bottomTop){
-      this.score += 100;
+      this.score += 200;
       this.flags.splice(index,1);
 
       console.log(this.score);
@@ -111,15 +111,15 @@ Game.prototype.checkCollision = function(){
 
   
     if(rightLeft && leftRight && topBottom && bottomTop){
-      this.score -= 25;
-      this.obstacles.splice(index,1);
+      this.score -= 5;
+      //this.obstacles.splice(index,1);
 
       console.log(this.score);
     }
   });
   //comprueba colisión entre player y meta
   if (this.goal){
-    if(this.goal.y <= (this.player.y - this.player.height / 2)){
+    if(this.goal.y <= (this.player.y - this.player.height / 2 - 100)){
       this.gameEnd = true;
     }
   }

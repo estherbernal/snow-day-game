@@ -1,20 +1,24 @@
 'use strict';
 
-function Player(canvas,color){
+function Player(canvas){
   this.canvas = canvas;
   this.ctx = this.canvas.getContext('2d');
-  this.width = 50;
-  this.height = 50;
+  this.width = 30;
+  this.height = 57;
   this.x = this.canvas.width/2;
   this.y = this.height/2 + 20;
   this.velocity = 5;
   this.direction = 0;
-  this.color = color;
+  this.img = new Image();
+  this.img.src = 'images/player.png';
+  this.color = this.image;
 };
 
 Player.prototype.draw = function(){
-  this.ctx.fillStyle = this.color;
-  this.ctx.fillRect((this.x-this.width/2), (this.y-this.height/2), this.width, this.height)
+  //this.ctx.fillStyle = this.color;
+  //this.ctx.drawImage(this.img, 0, 0);
+  this.ctx.drawImage(this.img,(this.x-this.width/2),(this.y-this.height/2), this.width, this.height);
+  //this.ctx.fillRect((this.x-this.width/2), (this.y-this.height/2), this.width, this.height)
 };
 
 Player.prototype.setDirection = function(newDirection){

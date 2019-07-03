@@ -11,14 +11,13 @@ function main(){
 
   function createSplashScreen(){
     var splashContent = `
-    <article>
-      <h1>Snow Day</h1>
+    <article class="splash-screen">
+      <h1><span class="snow">Snow</span> Day</h1>
       <button id="start-button">Start</button>
     </article>
     `;
 
     buildDom(splashContent);
-    
     var startButton = document.querySelector('#start-button');
     startButton.addEventListener('click', createGameScreen);
   }
@@ -32,8 +31,10 @@ function main(){
     buildDom(gameContent);
 
     var canvas =  document.querySelector('#canvas');
-    canvas.width = '500';
-    canvas.height = '800';
+    // canvas.width = '500';
+    // canvas.height = '800';
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
     var game = new Game(canvas);
     game.gameEndCallback(createRestartScreen);
     game.startGame();

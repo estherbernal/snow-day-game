@@ -69,7 +69,7 @@ p {
 
 /* ---- components ---- */
 
-.button {
+button {
   width: 100%;
   background-color: blue;
   color: #fff;
@@ -91,6 +91,43 @@ p {
   align-items: center;
 }
 
-#canvas{
-  border: 1px solid black;
+
+button{
+  border: 0;
+  padding: 10px;
+  min-width: 200px;
+  width:auto;
+  font-size: 1.2rem;
+  background-color: #5fc8ce;
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+}
+
+.splash-screen{
+  width: 100%;
+  height: 100vh;
+  background-image: url(images/slpash-screen-bg.png);
+  background-size: cover;
+  display: flex;
+  /*justify-content: center;*/
+  flex-direction: column;
+  align-items: center;
+}
+
+.splash-screen h1{
+  padding-top: 30px;
+  font-size:6rem;
+  font-family: 'Cedarville Cursive', cursive;
+  color: #efc413;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.splash-screen h1 .snow{
+  font-size:8rem;
+  font-family: 'Permanent Marker', cursive;
+  color: #2a7ea7;
+  line-height:1em;
 }
