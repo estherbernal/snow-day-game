@@ -4,6 +4,7 @@ function Game(canvas){
   this.player = null;
   //this.obstacles = [];
   this.flags = [];
+  this.goal = null;
   this.score = 0;
   this.canvas = canvas;
   this.ctx = this.canvas.getContext('2d');
@@ -11,22 +12,23 @@ function Game(canvas){
 
 Game.prototype.startGame = function(){
   //inicializa player
-  this.player = new Player(this.canvas);
-
+  this.player = new Player(this.canvas, 'red');
+  
   //crea la meta después de x segundos
+  setTimeout(() => {
+    this.goal = new GoalLine(this.canvas, 'yellow');
+  },3000);
 
+  
   //hace el loop
   var loop = () =>{
     //crea flags random
     if(Math.random()>0.98){
       var randomX = Math.random()*this.canvas.width;
-      var newFlag = new Obstacle(this.canvas, randomX);
+      var newFlag = new Obstacle(this.canvas, randomX, 20, 20, 'blue');
       this.flags.push(newFlag);
 
     }
-    this.flags
-
-
 
     this.clear();
     this.update();
@@ -48,6 +50,10 @@ Game.prototype.update = function(){
     flag.move();
   });
   //actualiza la posición de la meta
+  if(this.goal) {
+    this.goal.move();
+  }
+  
 }
 
 Game.prototype.draw = function(){
@@ -56,6 +62,9 @@ Game.prototype.draw = function(){
     flag.draw();
   });
   //redibuja la meta
+  if(this.goal) {
+    this.goal.draw();
+  }
 }
 
 Game.prototype.checkCollision = function(){
@@ -74,6 +83,5 @@ Game.prototype.checkCollision = function(){
       console.log(this.score);
     }
   })
-
   //comprueba colisión entre player y meta
 }

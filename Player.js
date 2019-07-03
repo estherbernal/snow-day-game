@@ -1,6 +1,6 @@
 'use strict';
 
-function Player(canvas){
+function Player(canvas,color){
   this.canvas = canvas;
   this.ctx = this.canvas.getContext('2d');
   this.width = 50;
@@ -9,10 +9,11 @@ function Player(canvas){
   this.y = this.height/2 + 20;
   this.velocity = 5;
   this.direction = 0;
-  this.color = 'red';
+  this.color = color;
 };
 
 Player.prototype.draw = function(){
+  this.ctx.fillStyle = this.color;
   this.ctx.fillRect((this.x-this.width/2), (this.y-this.height/2), this.width, this.height)
 };
 
