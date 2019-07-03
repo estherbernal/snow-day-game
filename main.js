@@ -49,7 +49,6 @@ function main(){
     document.addEventListener('keyup',function(event){
         game.player.setDirection(0);
     });
-    
     /* Desaceleración cambiar velocidad a 0*/
     /*
     var deceleration = null;
@@ -80,6 +79,7 @@ function main(){
         game.player.velocity = game.player.velocity - 2;
         if(game.player.velocity<=0){
           game.player.direction = 0;
+          game.player.velocity = 0;
           clearInterval(deceleration);
           game.player.setDirection(0);
         }

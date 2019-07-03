@@ -21,16 +21,16 @@ Game.prototype.startGame = function(){
     this.goal = new GoalLine(this.canvas, 'yellow');
   },30000);
 
+   //flags cada segundo
+  setInterval(() => {
+    var randomNum = Math.floor(Math.random() * (this.canvas.width/1.25 - 125)) + 125;
+    var randomX = randomNum;
+    var newFlag = new Obstacle(this.canvas, randomX, 20, 20, 'blue');
+    this.flags.push(newFlag);
+  },1000);
   
   //hace el loop
   var loop = () =>{
-    //crea flags random
-    if(Math.random()>0.98){
-      var randomX = Math.random()*this.canvas.width;
-      var newFlag = new Obstacle(this.canvas, randomX, 20, 20, 'blue');
-      this.flags.push(newFlag);
-    }
-
     //crear árboles random
     if(Math.random()>0.95){
       var randomX = Math.random()*this.canvas.width;
@@ -70,7 +70,6 @@ Game.prototype.update = function(){
   if(this.goal) {
     this.goal.move();
   }
-  
 }
 
 Game.prototype.draw = function(){
