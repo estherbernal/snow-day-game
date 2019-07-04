@@ -27,8 +27,16 @@ function main(){
     //salvo nombre
     var nameInput = document.querySelector('input').value;
     console.log(nameInput);
-
-    localStorage.setItem('scores', JSON.stringify([{name:nameInput, socre:0}]));
+    var actualRanking= JSON.parse(localStorage.getItem('scores'));
+    var newPlayer = {name:nameInput, score:0};
+    if(!actualRanking){
+      //localStorage.setItem('scores', JSON.stringify([{name:nameInput, score:0}]));
+      localStorage.setItem('scores', JSON.stringify([{name:nameInput, score:0}]));
+      
+    } else{
+      actualRanking.push(newPlayer);
+      localStorage.setItem('scores', JSON.stringify(actualRanking));
+    }
     createGameScreen();
   }
 
@@ -112,6 +120,12 @@ function main(){
     </article>
     `;
     buildDom(restartContent);
+
+    //actualizo score
+    var actualRanking = JSON.parse(localStorage.getItem('scores'));
+    actualRanking[actualRanking.length-1].score = score;
+    localStorage.setItem('scores', JSON.stringify(actualRanking));
+
     var restartButton = document.querySelector('#restart-button');
     restartButton.addEventListener('click',createGameScreen);
     var scoreResult = document.querySelector('p');
