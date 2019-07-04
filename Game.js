@@ -4,6 +4,7 @@ function Game(canvas){
   this.player = null;
   this.obstacles = [];
   this.flags = [];
+  this.snow = [];
   this.goal = null;
   this.score = 0;
   this.gameEnd = false;
@@ -40,6 +41,16 @@ Game.prototype.startGame = function(){
       var newObstacle = new Obstacle(this.canvas, randomX, 60, 80, srcObstacles[randomNum]);
       this.obstacles.push(newObstacle);
     }
+
+    /*
+    //crear copos de nieve
+    if(Math.random()>0.97){
+      var randomX = Math.random()*this.canvas.width;
+      var newSnow = new Snow(this.canvas, randomX);
+      this.snow.push(newSnow);
+    }
+    */
+
     this.clear();
     this.update();
     this.draw();
@@ -66,6 +77,11 @@ Game.prototype.update = function(){
   this.obstacles.forEach(function(obstacle){
     obstacle.move();
   });
+  /*
+  this.snow.forEach(function(snow){
+    snow.move();
+  });
+  */
   //actualiza la posición de la meta
   if(this.goal) {
     this.goal.move();
@@ -80,6 +96,11 @@ Game.prototype.draw = function(){
   this.obstacles.forEach(function(obstacle){
     obstacle.draw();
   });
+  /*
+  this.snow.forEach(function(snow){
+    snow.draw();
+  });
+  */
   //redibuja la meta
   if(this.goal) {
     this.goal.draw();
