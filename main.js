@@ -16,12 +16,31 @@ function main(){
       <input placeholder="Your name here" focus></input>
       <button id="start-button">Start</button>
       <p id="error"></p>
+      <button id="instructions">Instructions</button>
     </article>
     `;
     buildDom(splashContent);
     document.querySelector('input').focus()
     var startButton = document.querySelector('#start-button');
     startButton.addEventListener('click', saveData);
+    var instructionsButton = document.querySelector('#instructions');
+    instructionsButton.addEventListener('click', instructionsScreen);
+  }
+
+  function instructionsScreen(){
+    var instructionsContent = `
+    <section class="screen instructions-screen">
+      <h1>Instructions</h1>
+      <article>
+        <img src="images/instructions.png" alt="instructions: move with left and right. Catch the flags, avoid trees. Game finishes when you get the goal-line.">        
+        <button id="backSplash">Back</button>
+      </article>
+      
+    </section>
+    `;
+    buildDom(instructionsContent);
+    var backButton = document.querySelector('#backSplash');
+    backButton.addEventListener('click', createSplashScreen);
   }
 
   function saveData(){

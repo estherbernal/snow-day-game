@@ -38,6 +38,7 @@ button{
   padding: 10px;
   min-width: 200px;
   width:auto;
+  margin-top:15px;
   font-size: 1.2rem;
   background-color: #5fc8ce;
   text-transform: uppercase;
@@ -52,7 +53,7 @@ button{
 .screen{
   width: 100%;
   height: 100vh;
-  background-image: url(images/slpash-screen-bg.png);
+  background-image: url('images/slpash-screen-bg.png');
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -67,6 +68,12 @@ button{
   background-size: auto;
   background-position-x: center;
   background-position-y: bottom;
+}
+
+.instructions-screen{
+  background-image: url('images/instructionsBg.png');
+  background-size: cover;
+
 }
 
 .screen h1{
@@ -84,7 +91,6 @@ button{
 
 .splash-screen input{
   padding: 10px;
-  margin-bottom:10px;
 }
 
 .restart-screen h1{
@@ -144,4 +150,25 @@ button{
 .error-displayed{
   background-color: #ff7247;
 
+}
+.instructions-screen h1{
+  font-size: 4em;
+  font-family: 'Permanent Marker', cursive;
+  color: #2a7ea7;
+}
+
+.instructions-screen article{
+  padding: 20px;
+  background-color: white;
+  border-radius:5px;
+  -webkit-box-shadow: 10px 10px 0px 0px rgb(86, 176, 122);
+  -moz-box-shadow: 10px 10px 0px 0px rgb(86, 176, 122);
+  box-shadow: 10px 10px 0px 0px rgb(86, 176, 122);
+  display: flex;
+  flex-direction: column;
+}
+
+.instructions-screen article img{
+  max-width: 500px;
+  width: 100%;
 }
