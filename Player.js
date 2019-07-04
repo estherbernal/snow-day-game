@@ -3,14 +3,14 @@
 function Player(canvas){
   this.canvas = canvas;
   this.ctx = this.canvas.getContext('2d');
-  this.width = 30;
-  this.height = 57;
+  this.width = 40;
+  this.height = 67;
   this.x = this.canvas.width/2;
   this.y = this.height/2 + 20;
-  this.velocity = 5;
+  this.velocity = 0;
   this.direction = 0;
   this.img = new Image();
-  this.img.src = 'images/player.png';
+  this.img.src = 'images/player2.png';
   this.color = this.image;
 };
 

@@ -13,12 +13,13 @@ function main(){
     var splashContent = `
     <article class="screen splash-screen">
       <h1><span class="snow">Snow</span> Day</h1>
-      <input placeholder="Your name here"></input>
+      <input placeholder="Your name here" focus></input>
       <button id="start-button">Start</button>
+      <p id="error"></p>
     </article>
     `;
-
     buildDom(splashContent);
+    document.querySelector('input').focus()
     var startButton = document.querySelector('#start-button');
     startButton.addEventListener('click', saveData);
   }
@@ -26,18 +27,24 @@ function main(){
   function saveData(){
     //salvo nombre
     var nameInput = document.querySelector('input').value;
-    console.log(nameInput);
-    var actualRanking= JSON.parse(localStorage.getItem('scores'));
-    var newPlayer = {name:nameInput, score:0};
-    if(!actualRanking){
-      //localStorage.setItem('scores', JSON.stringify([{name:nameInput, score:0}]));
-      localStorage.setItem('scores', JSON.stringify([{name:"Pepe", score:0},{name:"Sara", score:0},{name:"Anna", score:0},{name:"Joan", score:0},{name:nameInput, score:0}]));
-      
-    } else{
-      actualRanking.push(newPlayer);
-      localStorage.setItem('scores', JSON.stringify(actualRanking));
+    if( nameInput){
+      console.log(nameInput);
+      var actualRanking= JSON.parse(localStorage.getItem('scores'));
+      var newPlayer = {name:nameInput, score:0};
+      if(!actualRanking){
+        //localStorage.setItem('scores', JSON.stringify([{name:nameInput, score:0}]));
+        localStorage.setItem('scores', JSON.stringify([{name:"Esther", score:10000},{name:"Sara", score:1300},{name:"Anna", score:2000},{name:"Joan", score:500},{name:nameInput, score:0}]));
+        
+      } else{
+        actualRanking.push(newPlayer);
+        localStorage.setItem('scores', JSON.stringify(actualRanking));
+      }
+      createGameScreen();
+    } else {
+      var errorText = document.querySelector('#error');
+      errorText.classList.add('error-displayed');
+      errorText.innerHTML = "Tienes que introducir tu nombre para empezar"
     }
-    createGameScreen();
   }
 
 
@@ -66,42 +73,14 @@ function main(){
       if(event.key === 'ArrowLeft'){
         keyPressed[0]=true;
         game.player.setDirection(-1);
+        game.player.img.src = 'images/player-left.png'
       }else if(event.key === 'ArrowRight'){
         keyPressed[1]=true;
         game.player.setDirection(1);
+        game.player.img.src = 'images/player-right.png'
       };
     }); 
-    /*
-    document.addEventListener('keyup',function(){
-        game.player.setDirection(0);
-    });
 
-    */
-    /* Desaceleración cambiar velocidad a 0*/
-    
-    /*
-    var deceleration = null;
-    document.addEventListener('keydown',function(event){
-        
-      clearInterval(deceleration);
-
-      if(event.key === 'ArrowLeft'){
-        game.player.velocity = 0;
-        game.player.direction = 0;
-        game.player.setDirection(-1);
-        for(var i= game.player.velocity; i<5; i++){
-          game.player.velocity = game.player.velocity + 1;
-        }
-      }else if(event.key === 'ArrowRight'){
-        game.player.velocity = 0;
-        game.player.direction = 0;
-        game.player.setDirection(1);
-        for(var i= game.player.velocity; i<5; i++){
-          game.player.velocity = game.player.velocity + 1;
-        }
-      };
-    }); 
-  */
     document.addEventListener('keyup',function(){
       console.log(event.key);
       if(event.key === 'ArrowLeft'){
@@ -118,14 +97,12 @@ function main(){
         if(game.player.velocity<=0){
           game.player.direction = 0;
           game.player.velocity = 0;
+          game.player.img.src = 'images/player2.png'
           clearInterval(deceleration);
           game.player.setDirection(0);
         }
       },200);
-    });
-    
-
-    
+    });    
   };
 
   function createRestartScreen(score){
@@ -203,7 +180,7 @@ function main(){
 
 
     var restartButton = document.querySelector('#restart-button');
-    restartButton.addEventListener('click',createGameScreen);
+    restartButton.addEventListener('click',createSplashScreen);
     var scoreResult = document.querySelector('p');
     scoreResult.innerHTML = score;
   }

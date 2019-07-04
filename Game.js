@@ -117,7 +117,7 @@ Game.prototype.checkCollision = function(){
   });
   //comprueba colisión entre player y meta
   if (this.goal){
-    if(this.goal.y <= (this.player.y - this.player.height / 2 - 100)){
+    if(this.goal.y <= (this.player.y - this.player.height / 2 - 300)){
       this.gameEnd = true;
     }
   }

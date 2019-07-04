@@ -134,3 +134,14 @@ button{
   text-align: left;
   font-weight:bold;
 }
+
+#error{
+  color: white;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.error-displayed{
+  background-color: #ff7247;
+
+}
