@@ -31,7 +31,7 @@ function main(){
     var newPlayer = {name:nameInput, score:0};
     if(!actualRanking){
       //localStorage.setItem('scores', JSON.stringify([{name:nameInput, score:0}]));
-      localStorage.setItem('scores', JSON.stringify([{name:nameInput, score:0}]));
+      localStorage.setItem('scores', JSON.stringify([{name:"Pepe", score:0},{name:"Sara", score:0},{name:"Anna", score:0},{name:"Joan", score:0},{name:nameInput, score:0}]));
       
     } else{
       actualRanking.push(newPlayer);
