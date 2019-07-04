@@ -7,7 +7,7 @@ function Game(canvas){
   this.goal = null;
   this.score = 0;
   this.gameEnd = false;
-  this.ongameEnd = null;
+  this.onGameEnd = null;
   this.canvas = canvas;
   this.ctx = this.canvas.getContext('2d');
 }
@@ -19,7 +19,7 @@ Game.prototype.startGame = function(){
   //crea la meta después de x segundos
   setTimeout(() => {
     this.goal = new GoalLine(this.canvas);
-  },30000);
+  },2000);
 
    //flags cada medio segundo
   setInterval(() => {
@@ -48,7 +48,7 @@ Game.prototype.startGame = function(){
     if (!this.gameEnd){
       requestAnimationFrame(loop);
     }else{
-      this.onGameEnd();
+      this.onGameEnd(this.score);
     }
   };
   loop();
@@ -99,7 +99,6 @@ Game.prototype.checkCollision = function(){
       this.score += 200;
       this.flags.splice(index,1);
 
-      console.log(this.score);
     }
   });
   // comprueba colisión entre player y árboles
@@ -114,7 +113,6 @@ Game.prototype.checkCollision = function(){
       this.score -= 5;
       //this.obstacles.splice(index,1);
 
-      console.log(this.score);
     }
   });
   //comprueba colisión entre player y meta
@@ -128,4 +126,5 @@ Game.prototype.checkCollision = function(){
 
 Game.prototype.gameEndCallback = function(callback){
   this.onGameEnd = callback;
+
 }
