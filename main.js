@@ -57,26 +57,34 @@ function main(){
     game.gameEndCallback(createRestartScreen);
     game.startGame();
 
+    var deceleration = null;
+    var keyPressed = [];
     document.addEventListener('keydown',function(event){
+      clearInterval(deceleration);
+      console.log(keyPressed);
+      game.player.velocity = 5;
       if(event.key === 'ArrowLeft'){
+        keyPressed[0]=true;
         game.player.setDirection(-1);
       }else if(event.key === 'ArrowRight'){
+        keyPressed[1]=true;
         game.player.setDirection(1);
       };
     }); 
-
+    /*
     document.addEventListener('keyup',function(){
         game.player.setDirection(0);
     });
 
-    
+    */
     /* Desaceleración cambiar velocidad a 0*/
+    
     /*
     var deceleration = null;
     document.addEventListener('keydown',function(event){
-      if(deceleration){
-        clearInterval(deceleration);
-      }
+        
+      clearInterval(deceleration);
+
       if(event.key === 'ArrowLeft'){
         game.player.velocity = 0;
         game.player.direction = 0;
@@ -93,9 +101,18 @@ function main(){
         }
       };
     }); 
-    
-
+  */
     document.addEventListener('keyup',function(){
+      console.log(event.key);
+      if(event.key === 'ArrowLeft'){
+        keyPressed[0] = false;
+      }
+      if(event.key === 'ArrowRight'){
+        keyPressed[1] = false;
+      }
+      if (keyPressed[0] || keyPressed[1]){
+        return;
+      }
       deceleration = setInterval(function(){
         game.player.velocity = game.player.velocity - 2;
         if(game.player.velocity<=0){
@@ -106,7 +123,7 @@ function main(){
         }
       },200);
     });
-    */
+    
 
     
   };
