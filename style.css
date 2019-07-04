@@ -106,3 +106,31 @@ button{
   font-family: 'Russo One', sans-serif;
   line-height: normal;
 }
+
+.ranking{
+  width:400px;
+  background-color: #fff39f;
+  -webkit-box-shadow: 10px 10px 0px 0px rgba(255,183,0,1);
+  -moz-box-shadow: 10px 10px 0px 0px rgba(255,183,0,1);
+  box-shadow: 10px 10px 0px 0px rgba(255,183,0,1);
+  padding: 10px 0;
+  margin-bottom: 30px;
+}
+
+.ranking-names-title{
+  text-align: right;
+}
+
+.ranking-scores-title{
+  text-align: left;
+}
+
+.ranking-names{
+  text-align: right;
+  width:50%
+}
+
+.ranking-scores{
+  text-align: left;
+  font-weight:bold;
+}
