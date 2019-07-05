@@ -16,9 +16,7 @@ function Obstacle(canvas, randomX, width, height, src){
 };
 
 Obstacle.prototype.draw = function(){
- // this.ctx.fillStyle = this.color;
   this.ctx.drawImage(this.img,(this.x-this.width/2),(this.y-this.height/2), this.width, this.height);
-  //this.ctx.fillRect((this.x-this.width/2), (this.y-this.height/2), this.width, this.height)
 };
 
 Obstacle.prototype.move = function(){

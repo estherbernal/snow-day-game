@@ -9,6 +9,8 @@ function Game(canvas){
   this.score = 0;
   this.gameEnd = false;
   this.onGameEnd = null;
+  this.alfa = false;
+  this.counter = 0;
   this.canvas = canvas;
   this.ctx = this.canvas.getContext('2d');
 }
@@ -123,7 +125,7 @@ Game.prototype.checkCollision = function(){
     }
   });
   // comprueba colisión entre player y árboles
-  this.obstacles.forEach((obstacle,index) => {
+  this.obstacles.forEach((obstacle) => {
     var rightLeft = this.player.x + this.player.width/2 >= obstacle.x - obstacle.width/2;
     var leftRight = this.player.x - this.player.width/2 <= obstacle.x + obstacle.width/2;
     var topBottom = this.player.y + this.player.height/2 >= obstacle.y - obstacle.height/2;
@@ -132,8 +134,30 @@ Game.prototype.checkCollision = function(){
   
     if(rightLeft && leftRight && topBottom && bottomTop){
       this.score -= 5;
-      //this.obstacles.splice(index,1);
+      //this.player.img.src = "images/player2-alfa.png";
+      //this.alfa = true;
+    
+    /*
+      var alfaInterval = setInterval(() => changeAlfa(this.player, this.alfa, this.counter),1000);
 
+      var changeAlfa = (player, alfa) =>{  
+        if (!alfa){
+          player.img.src = "images/player2-alfa.png";
+          this.alfa = true;
+          this.counter ++;
+          console.log(this.counter);
+        }
+        else{
+          player.img.src = "images/player2.png";
+          this.alfa = false;
+        }
+      } 
+      if (this.counter >= 180){
+        clearInterval(alfaInterval);
+        this.counter = 0;
+      }
+      */
+      
     }
   });
   //comprueba colisión entre player y meta

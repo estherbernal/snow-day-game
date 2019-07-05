@@ -122,23 +122,24 @@ button{
   padding: 10px 0;
   margin-bottom: 30px;
 }
-
-.ranking-names-title{
-  text-align: right;
-}
-
-.ranking-scores-title{
-  text-align: left;
+.ranking th{
+  font-size: 1.5em;
+  color: #2a7ea7;
+  text-transform: uppercase;
+  padding: 10px 0;
 }
 
 .ranking-names{
   text-align: right;
-  width:50%
+  width:50%;
+  text-transform: uppercase;
 }
 
 .ranking-scores{
   text-align: left;
   font-weight:bold;
+  color: #20a9b1;
+    padding-left: 10px;
 }
 
 #error{
@@ -166,9 +167,14 @@ button{
   box-shadow: 10px 10px 0px 0px rgb(86, 176, 122);
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .instructions-screen article img{
   max-width: 500px;
   width: 100%;
+}
+
+#backSplash{
+  width:200px;
 }

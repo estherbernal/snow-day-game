@@ -47,7 +47,6 @@ function main(){
     //salvo nombre
     var nameInput = document.querySelector('input').value;
     if( nameInput){
-      console.log(nameInput);
       var actualRanking= JSON.parse(localStorage.getItem('scores'));
       var newPlayer = {name:nameInput, score:0};
       if(!actualRanking){
@@ -87,7 +86,6 @@ function main(){
     var keyPressed = [];
     document.addEventListener('keydown',function(event){
       clearInterval(deceleration);
-      console.log(keyPressed);
       game.player.velocity = 5;
       if(event.key === 'ArrowLeft'){
         keyPressed[0]=true;
@@ -101,7 +99,6 @@ function main(){
     }); 
 
     document.addEventListener('keyup',function(){
-      console.log(event.key);
       if(event.key === 'ArrowLeft'){
         keyPressed[0] = false;
       }
