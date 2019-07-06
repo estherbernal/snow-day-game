@@ -18,13 +18,6 @@ function main(){
         <button id="start-button">Start</button>
         <p id="error"></p>
         <button id="instructions">Instructions</button>
-
-        <img src="images/arbol1.png">
-        <img src="images/arbol2.png">
-        <img src="images/meta.png">
-        <img src="images/player2.png">
-        <img src="images/player-left.png">
-        <img src="images/player-right.png">
       </div>
     </article>
     `;
