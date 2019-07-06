@@ -53,7 +53,7 @@ function main(){
       var newPlayer = {name:nameInput, score:0};
       if(!actualRanking){
         //localStorage.setItem('scores', JSON.stringify([{name:nameInput, score:0}]));
-        localStorage.setItem('scores', JSON.stringify([{name:"Esther", score:10000},{name:"Sara", score:1300},{name:"Anna", score:2000},{name:"Joan", score:500},{name:nameInput, score:0}]));
+        localStorage.setItem('scores', JSON.stringify([{name:"Esther", score:10000},{name:"Sara", score:1300},{name:"Anna", score:2000},{name:"Jordi", score:500},{name:nameInput, score:0}]));
         
       } else{
         actualRanking.push(newPlayer);
@@ -91,6 +91,8 @@ function main(){
     document.addEventListener('keydown',movingPlayer);
     document.querySelector('.to-left').addEventListener('touchstart', movingPlayerLeft);
     document.querySelector('.to-right').addEventListener('touchstart', movingPlayerRight);
+    document.querySelector('.to-left').addEventListener('touchend', stopPlayerTouch);
+    document.querySelector('.to-right').addEventListener('touchend', stopPlayerTouch);
 
     function movingPlayer(event){
       clearInterval(deceleration);
@@ -103,6 +105,39 @@ function main(){
         movingPlayerRight();
       };
     }
+
+    document.addEventListener('keyup',stopPlayerKeyBoard); 
+
+    function stopPlayerKeyBoard(){
+      if(event.key === 'ArrowLeft'){
+        keyPressed[0] = false;
+      }
+      if(event.key === 'ArrowRight'){
+        keyPressed[1] = false;
+      }
+      if (keyPressed[0] || keyPressed[1]){
+        return;
+      }
+      deceleration = setInterval(decelerating,200);
+    }
+
+    function stopPlayerKeyBoard(){
+      if(event.key === 'ArrowLeft'){
+        keyPressed[0] = false;
+      }
+      if(event.key === 'ArrowRight'){
+        keyPressed[1] = false;
+      }
+      if (keyPressed[0] || keyPressed[1]){
+        return;
+      }
+      deceleration = setInterval(decelerating,200);
+    }
+
+    function stopPlayerKeyBoard(){
+      deceleration = setInterval(decelerating,200);
+    }
+
 
     function movingPlayerLeft(){
       clearInterval(deceleration);
@@ -127,20 +162,7 @@ function main(){
         clearInterval(deceleration);
         game.player.setDirection(0);
       }
-    }
-
-    document.addEventListener('keyup',function(){
-      if(event.key === 'ArrowLeft'){
-        keyPressed[0] = false;
-      }
-      if(event.key === 'ArrowRight'){
-        keyPressed[1] = false;
-      }
-      if (keyPressed[0] || keyPressed[1]){
-        return;
-      }
-      deceleration = setInterval(decelerating,200);
-    });    
+    }   
   };
 
   function createRestartScreen(score){

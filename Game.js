@@ -22,7 +22,7 @@ Game.prototype.startGame = function(){
   //crea la meta después de x segundos
   setTimeout(() => {
     this.goal = new GoalLine(this.canvas);
-  },200000); //20000
+  },20000); //20000
 
    //flags cada medio segundo
   setInterval(() => {
