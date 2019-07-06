@@ -91,8 +91,8 @@ function main(){
     document.addEventListener('keydown',movingPlayer);
     document.querySelector('.to-left').addEventListener('touchstart', movingPlayerLeft);
     document.querySelector('.to-right').addEventListener('touchstart', movingPlayerRight);
-    document.querySelector('.to-left').addEventListener('touchend', stopPlayerTouch);
-    document.querySelector('.to-right').addEventListener('touchend', stopPlayerTouch);
+    document.querySelector('.to-left').addEventListener('touchend', stopLeftPlayerTouch);
+    document.querySelector('.to-right').addEventListener('touchend', stopRightPlayerTouch);
 
     function movingPlayer(event){
       clearInterval(deceleration);
@@ -108,7 +108,7 @@ function main(){
 
     document.addEventListener('keyup',stopPlayerKeyBoard); 
 
-    function stopPlayerKeyBoard(){
+    function stopPlayerKeyBoard(event){
       if(event.key === 'ArrowLeft'){
         keyPressed[0] = false;
       }
@@ -121,13 +121,17 @@ function main(){
       deceleration = setInterval(decelerating,200);
     }
 
-    function stopPlayerKeyBoard(){
-      if(event.key === 'ArrowLeft'){
-        keyPressed[0] = false;
-      }
-      if(event.key === 'ArrowRight'){
-        keyPressed[1] = false;
-      }
+    function stopLeftPlayerTouch(){
+      keyPressed[0] = false;
+      StopTouch();
+    }
+
+    function stopRightPlayerTouch(){
+      keyPressed[1] = false;
+      StopTouch();
+    }
+
+    function StopTouch(){
       if (keyPressed[0] || keyPressed[1]){
         return;
       }
@@ -137,7 +141,6 @@ function main(){
     function stopPlayerKeyBoard(){
       deceleration = setInterval(decelerating,200);
     }
-
 
     function movingPlayerLeft(){
       clearInterval(deceleration);

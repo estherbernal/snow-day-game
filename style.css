@@ -209,7 +209,7 @@ button{
 
 
 .to-left{
-  background-color: #ff000059;
+  background-color: #ff00f259;
   width: 50%;
   height: 100vh;
   position: absolute;
@@ -217,7 +217,7 @@ button{
 }
 
 .to-right{
-  background-color: #0000ff59;
+  background-color: #1eff0059;
   width: 50%;
   height: 100vh;
   position: absolute;
