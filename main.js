@@ -89,8 +89,8 @@ function main(){
     var deceleration = null;
     var keyPressed = [];
     document.addEventListener('keydown',movingPlayer);
-    document.querySelector('.to-left').addEventListener('click', movingPlayerLeft);
-    document.querySelector('.to-right').addEventListener('click', movingPlayerRight);
+    document.querySelector('.to-left').addEventListener('touchstart', movingPlayerLeft);
+    document.querySelector('.to-right').addEventListener('touchstart', movingPlayerRight);
 
     function movingPlayer(event){
       clearInterval(deceleration);
