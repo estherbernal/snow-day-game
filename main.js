@@ -12,6 +12,7 @@ function main(){
   function createSplashScreen(){
     var splashContent = `
     <article class="screen splash-screen">
+      <div class="block-off"></div>
       <div class="container">
         <h1><span class="snow">Snow</span> Day</h1>
         <input placeholder="Your name here" focus></input>
@@ -22,12 +23,22 @@ function main(){
     </article>
     `;
     buildDom(splashContent);
-    document.querySelector('input').focus()
+    var input = document.querySelector('input');
+    input.focus();
+    input.addEventListener('click', function(){
+      blockDiv.classList.add("block-on");
+    });
+    var blockDiv = document.querySelector('.block-off');
+    blockDiv.addEventListener('click', function(){
+      blockDiv.classList.remove("block-on");
+    });
+
     var startButton = document.querySelector('#start-button');
     startButton.addEventListener('click', saveData);
     var instructionsButton = document.querySelector('#instructions');
     instructionsButton.addEventListener('click', instructionsScreen);
   }
+
 
   function instructionsScreen(){
     var instructionsContent = `

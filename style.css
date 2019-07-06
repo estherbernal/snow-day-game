@@ -53,7 +53,7 @@ button{
 .screen{
   width: 100%;
   height: 100vh;
-  background-image: url('images/slpash-screen-bg.png');
+  background-image: url('images/splash-screen-bg.png');
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -220,5 +220,22 @@ button{
   height: 100vh;
   position: absolute;
   right: 0;
+
+}
+
+@media (max-width: 500px) {
+  .block-off{
+    display:none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #cecece80;
+  }
+
+  .block-on{
+    display:block;
+  }
 
 }
