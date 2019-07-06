@@ -12,11 +12,13 @@ function main(){
   function createSplashScreen(){
     var splashContent = `
     <article class="screen splash-screen">
-      <h1><span class="snow">Snow</span> Day</h1>
-      <input placeholder="Your name here" focus></input>
-      <button id="start-button">Start</button>
-      <p id="error"></p>
-      <button id="instructions">Instructions</button>
+      <div class="container">
+        <h1><span class="snow">Snow</span> Day</h1>
+        <input placeholder="Your name here" focus></input>
+        <button id="start-button">Start</button>
+        <p id="error"></p>
+        <button id="instructions">Instructions</button>
+      </div>
     </article>
     `;
     buildDom(splashContent);
@@ -68,6 +70,8 @@ function main(){
 
   function createGameScreen(){
     var gameContent = `
+    <div class="to-left"></div>
+    <div class="to-right"></div>
     <canvas id="canvas">
     </canvas>
     `;
@@ -84,19 +88,46 @@ function main(){
 
     var deceleration = null;
     var keyPressed = [];
-    document.addEventListener('keydown',function(event){
+    document.addEventListener('keydown',movingPlayer);
+    document.querySelector('.to-left').addEventListener('click', movingPlayerLeft);
+    document.querySelector('.to-right').addEventListener('click', movingPlayerRight);
+
+    function movingPlayer(event){
       clearInterval(deceleration);
       game.player.velocity = 5;
       if(event.key === 'ArrowLeft'){
         keyPressed[0]=true;
-        game.player.setDirection(-1);
-        game.player.img.src = 'images/player-left.png'
+        movingPlayerLeft();
       }else if(event.key === 'ArrowRight'){
         keyPressed[1]=true;
-        game.player.setDirection(1);
-        game.player.img.src = 'images/player-right.png'
+        movingPlayerRight();
       };
-    }); 
+    }
+
+    function movingPlayerLeft(){
+      clearInterval(deceleration);
+      game.player.velocity = 5;
+      game.player.setDirection(-1);
+      game.player.img.src = 'images/player-left.png'
+    }
+
+    function movingPlayerRight(){
+      clearInterval(deceleration);
+      game.player.velocity = 5;
+      game.player.setDirection(1);
+      game.player.img.src = 'images/player-right.png'
+    }
+    
+    function decelerating(){
+      game.player.velocity = game.player.velocity - 2;
+      if(game.player.velocity<=0){
+        game.player.direction = 0;
+        game.player.velocity = 0;
+        game.player.img.src = 'images/player2.png'
+        clearInterval(deceleration);
+        game.player.setDirection(0);
+      }
+    }
 
     document.addEventListener('keyup',function(){
       if(event.key === 'ArrowLeft'){
@@ -108,16 +139,7 @@ function main(){
       if (keyPressed[0] || keyPressed[1]){
         return;
       }
-      deceleration = setInterval(function(){
-        game.player.velocity = game.player.velocity - 2;
-        if(game.player.velocity<=0){
-          game.player.direction = 0;
-          game.player.velocity = 0;
-          game.player.img.src = 'images/player2.png'
-          clearInterval(deceleration);
-          game.player.setDirection(0);
-        }
-      },200);
+      deceleration = setInterval(decelerating,200);
     });    
   };
 
