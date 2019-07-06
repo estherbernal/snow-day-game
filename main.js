@@ -18,6 +18,13 @@ function main(){
         <button id="start-button">Start</button>
         <p id="error"></p>
         <button id="instructions">Instructions</button>
+
+        <img src="images/arbol1.png">
+        <img src="images/arbol2.png">
+        <img src="images/meta.png">
+        <img src="images/player2.png">
+        <img src="images/player-left.png">
+        <img src="images/player-right.png">
       </div>
     </article>
     `;
@@ -46,6 +53,7 @@ function main(){
   }
 
   function saveData(){
+
     //salvo nombre
     var nameInput = document.querySelector('input').value;
     if( nameInput){
@@ -70,10 +78,11 @@ function main(){
 
   function createGameScreen(){
     var gameContent = `
-    <div class="to-left"></div>
-    <div class="to-right"></div>
+    
     <canvas id="canvas">
     </canvas>
+    <div class="to-left"></div>
+    <div class="to-right"></div>
     `;
     buildDom(gameContent);
 
@@ -86,13 +95,17 @@ function main(){
     game.gameEndCallback(createRestartScreen);
     game.startGame();
 
-    var deceleration = null;
-    var keyPressed = [];
+    
     document.addEventListener('keydown',movingPlayer);
     document.querySelector('.to-left').addEventListener('touchstart', movingPlayerLeft);
     document.querySelector('.to-right').addEventListener('touchstart', movingPlayerRight);
+    document.addEventListener('keyup',stopPlayerKeyBoard); 
     document.querySelector('.to-left').addEventListener('touchend', stopLeftPlayerTouch);
     document.querySelector('.to-right').addEventListener('touchend', stopRightPlayerTouch);
+
+
+    var deceleration = null;
+    var keyPressed = [];
 
     function movingPlayer(event){
       clearInterval(deceleration);
@@ -106,7 +119,30 @@ function main(){
       };
     }
 
-    document.addEventListener('keyup',stopPlayerKeyBoard); 
+    function movingPlayerLeft(){
+      clearInterval(deceleration);
+      game.player.velocity = 5;
+      game.player.setDirection(-1);
+      game.player.img.src = 'images/player-left.png'
+    }
+
+    function movingPlayerRight(){
+      clearInterval(deceleration);
+      game.player.velocity = 5;
+      game.player.setDirection(1);
+      game.player.img.src = 'images/player-right.png'
+    }   
+
+    function decelerating(){
+      game.player.velocity = game.player.velocity - 2;
+      if(game.player.velocity<=0){
+        game.player.direction = 0;
+        game.player.velocity = 0;
+        game.player.img.src = 'images/player2.png'
+        clearInterval(deceleration);
+        game.player.setDirection(0);
+      }
+    }
 
     function stopPlayerKeyBoard(event){
       if(event.key === 'ArrowLeft'){
@@ -136,36 +172,7 @@ function main(){
         return;
       }
       deceleration = setInterval(decelerating,200);
-    }
-
-    function stopPlayerKeyBoard(){
-      deceleration = setInterval(decelerating,200);
-    }
-
-    function movingPlayerLeft(){
-      clearInterval(deceleration);
-      game.player.velocity = 5;
-      game.player.setDirection(-1);
-      game.player.img.src = 'images/player-left.png'
-    }
-
-    function movingPlayerRight(){
-      clearInterval(deceleration);
-      game.player.velocity = 5;
-      game.player.setDirection(1);
-      game.player.img.src = 'images/player-right.png'
-    }
-    
-    function decelerating(){
-      game.player.velocity = game.player.velocity - 2;
-      if(game.player.velocity<=0){
-        game.player.direction = 0;
-        game.player.velocity = 0;
-        game.player.img.src = 'images/player2.png'
-        clearInterval(deceleration);
-        game.player.setDirection(0);
-      }
-    }   
+    }    
   };
 
   function createRestartScreen(score){

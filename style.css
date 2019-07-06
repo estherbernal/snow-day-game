@@ -118,7 +118,7 @@ button{
 }
 .score{
   font-weight: bold;
-  font-size: 13em;
+  font-size: 8em;
   color: #5db47f;
   font-family: 'Russo One', sans-serif;
   line-height: normal;
@@ -126,7 +126,7 @@ button{
 
 @media (max-width: 500px) {
   .score{
-    font-size:8em;
+    font-size:5em;
   }
 }
 
