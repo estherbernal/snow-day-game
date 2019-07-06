@@ -3,7 +3,7 @@
 function main(){
 
   var mainSection = document.querySelector('#main-section');
-
+  
   function buildDom(html){
     mainSection.innerHTML = html;
     return mainSection;
@@ -248,6 +248,37 @@ function main(){
     scoreResult.innerHTML = score;
   }
 
+  var loadcount = 0;
+  var loadtotal = 0;
+  var imagefiles = ['images/arbol1.png', 'images/arbol2.png', 'images/meta.png', 'images/bandera1.png', 'images/bandera2.png', 'images/bandera3.png', 'images/bandera4.png', 'images/instructions.png', 'images/meta.png', 'images/player-left.png',  'images/player-right.png', 'images/player2.png'];
+  
+  function loadImages(imagefiles) {
+    console.log('empieza');
+    loadcount = 0;
+    loadtotal = imagefiles.length;
+
+    // Load the images
+    var loadedimages = [];
+    for (var i=0; i<imagefiles.length; i++) {
+      // Create the image object
+      var image = new Image();
+
+      // Add onload event handler
+      image.onload = function () {
+        loadcount++;
+      };
+      // Set the source url of the image
+      image.src = imagefiles[i];
+      // Save to the image array
+      loadedimages[i] = image;
+    }
+    // Return an array of images
+    console.log('acaba');
+    console.log(loadedimages);
+    return loadedimages;
+  }
+
+  loadImages(imagefiles);
   createSplashScreen();
 }
 
