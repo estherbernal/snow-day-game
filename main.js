@@ -251,9 +251,6 @@ function main(){
   var imagefiles = ['images/instructionsBg.png','images/splash-screen-bg.png','images/arbol1.png', 'images/arbol2.png', 'images/meta.png', 'images/bandera1.png', 'images/bandera2.png', 'images/bandera3.png', 'images/bandera4.png', 'images/instructions.png', 'images/meta.png', 'images/player-left.png',  'images/player-right.png', 'images/player2.png'];
   
   function loadImages(imagefiles) {
-    console.log('empieza');
-    loadcount = 0;
-    loadtotal = imagefiles.length;
     var loadedimages = [];
     for (var i=0; i<imagefiles.length; i++) {
       var image = new Image();
