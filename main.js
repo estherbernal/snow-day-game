@@ -15,7 +15,7 @@ function main(){
       <div class="block-off"></div>
       <div class="container">
         <h1><span class="snow">Snow</span> Day</h1>
-        <input placeholder="Your name here" focus></input>
+        <input placeholder="Your name here"></input>
         <button id="start-button">Start</button>
         <p id="error"></p>
         <button id="instructions">Instructions</button>
@@ -24,7 +24,7 @@ function main(){
     `;
     buildDom(splashContent);
     var input = document.querySelector('input');
-    input.focus();
+    //input.focus();
     input.addEventListener('click', function(){
       blockDiv.classList.add("block-on");
     });
