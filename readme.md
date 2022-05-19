@@ -1,4 +1,5 @@
 # Snow Day
+This project was done while I was taking part of the Web Development Bootcamp at Ironhack, in 2019.
 
 ## Description
 Go down the mountain and catch as many flags as you can!
